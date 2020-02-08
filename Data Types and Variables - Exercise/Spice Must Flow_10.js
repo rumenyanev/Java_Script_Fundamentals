@@ -1,11 +1,25 @@
-function spiceMustFlow(startingYield){
+function spiceMustFlow(yieldPerDay){
 
-    let countDays = 1;
-    let countSpice = 0;
-    while(startingYield > 100){
-        
-    }
-}
+
+            let days = 0;
+            let harvest = 0;
+            let reduction = yieldPerDay;
+            if (yieldPerDay < 100) {
+                console.log(days);
+    console.log(harvest);
+                return;
+            }
+            while (yieldPerDay >= 100) {
+                days++;
+                harvest = (harvest + yieldPerDay) - 26;
+                reduction = reduction - 10;
+                yieldPerDay = reduction;
+            }
+            harvest -= 26;
+            console.log(days);
+            console.log(harvest);
+        }
+    
 spiceMustFlow(111);
 
 /*Spice Must Flow
