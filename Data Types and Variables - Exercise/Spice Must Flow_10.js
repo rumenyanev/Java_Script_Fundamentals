@@ -21,6 +21,7 @@ function spiceMustFlow(yieldPerDay){
         }
     
 spiceMustFlow(111);
+//spiceMustFlow(3356);
 
 /*Spice Must Flow
 Spice is Love, Spice is Life. And most importantly, Spice must flow. 
