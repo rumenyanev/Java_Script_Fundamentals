@@ -1,4 +1,4 @@
-function addAndSubtractTwo(data = []) {//this is from ECMA SCRIPT 6  =   let array = []
+function addAndSubtractTwo(data = []) {
 
     let arrayResult = [];
     let originalSum = 0;
