@@ -16,3 +16,9 @@ console.log(transformedObject);
 console.log(Array.isArray(transformedObject));
 //Object.entries() - returns array of all properties and their values of an object 
 
+console.log(Object.keys(person));
+// Object.keys() - returns array with all the properties.
+
+console.log(Object.values(person));
+//Object.values() - returns array with all the values of the properties
+
