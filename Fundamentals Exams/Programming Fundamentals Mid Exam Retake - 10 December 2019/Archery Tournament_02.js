@@ -1,78 +1,66 @@
 function archeryTournament(input = []) {
-    let targets = input.shift().split('|').map(Number);
+    let numbers = input.shift().split('|').map(Number);
 
-    let numbers = Number(targets);
-
-    for (let i = 0; i < numbers.length; i++) {
-        numbers[i] = Number(targets[i]);
-    }
 
     let points = 0;
     let index = 0;
     let length = 0;
 
-
-
     let command = input.shift();
-    let temp; //temp array to split the new line (by spaces)
-    let indexes; //array to split the command and the indexes (by '@' separator)
+    let temp;
+    let indexes;
 
     while (command !== "Game over") {
 
         if (command === "Reverse") {
-            numbers = targets.reverse();
+            numbers = numbers.reverse();
             command = input.shift();
             continue;
 
         }
 
-        temp = command.split(' '); //split by spaces
-        indexes = temp[1].split('@'); //split by @
+        temp = command.split(' ');
+        indexes = temp[1].split('@');
 
         if (indexes[0] === "Left") {
 
             index = Number(indexes[1]);
             length = Number(indexes[2]);
 
-            // if the index is valid
             if (index >= 0 && index <= numbers.length - 1) {
-                //while we are going to the target index
                 while (length != 0) {
-                    if (index > 0) { //if it's not on the first index
-
+                    if (index > 0) {
                         index--;
                         length--;
                     }
-                    else if (index == 0) { //if it's on the first index
+                    else if (index === 0) {
                         index = numbers.length - 1;
                         length--;
                     }
                 }
 
-                if (numbers[index] >= 5) { //if there is enough points
+                if (numbers[index] >= 5) {
                     numbers[index] -= 5;
                     points += 5;
                 }
-                else { //if there isn't is enough points
+                else {
 
                     points += numbers[index];
                     numbers[index] = 0;
                 }
             }
         }
-        else if (indexes[0] == "Right") {
+        else if (indexes[0] === "Right") {
 
             index = Number(indexes[1]);
             length = Number(indexes[2]);
+            if (index >= 0 && index <= numbers.length - 1) {
 
-            // if the index is valid
-            if (index >= 0 && index <= numbers.Length - 1) {
-                //while we are going to the target index
                 while (length != 0) {
-                    if (index < numbers.Length - 1) {    // if it's not on the last index
+                    if (index < numbers.length - 1) {
                         index++;
                         length--;
-                    } else if (index == numbers.Length - 1) { //// if it's on the last index
+                    } else if (index == numbers.length - 1) {
                         index = 0;
                         length--;
                     }
@@ -90,11 +78,16 @@ function archeryTournament(input = []) {
         }
         command = input.shift();
     }
-    for (let i of numbers) {
-        console.log(i+" - ");
-    }
+    let result = '';
+    for (let i = 0; i < numbers.length; i++) {
 
-   // console.log(numbers[numbers.length - 1]);
+        if (i === numbers.length - 1) {
+            result += numbers[i] + " ";
+        } else { result += (numbers[i] + ' - '); }
+    }
+    console.log(result);
+
+
     console.log(`Iskren finished the archery tournament with ${points} points!`);
 }
 
