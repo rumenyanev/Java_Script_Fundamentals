@@ -1,0 +1,75 @@
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="./style/template.css">
+    <title>Students Register</title>
+</head>
+
+<body>
+    <div id="container">
+        <nav id="navigation">
+            <div id="navigation-text">
+                <p id="lecture-name">Objects, JSON and DOM Events</p>
+                <p id="problem-name">02. Students Register</p>
+            </div>
+            <img id="logo-img" src="./images/SoftUniFoundation_Logo_OneLine_White@2x.png" alt="logo">
+        </nav>
+        <main>
+            <div id="exercise">
+                <form>
+                    <label>Students</label>
+                    <textarea type="text" id="input" rows="10" cols="50"></textarea>
+                    <div class="center">
+                        <input type="submit" id="button" onclick="addStudents()" value="Add Students">
+                    </div>
+                </form>
+                <label>Result</label>
+                <textarea readonly rows="10" cols="50" id="result"></textarea>
+            </div>
+            <img id="softUni-person-img" src="./images/cw_2_New_Logo.png" alt="softUni-person">
+        </main>
+        <footer>
+            <p id="footer-text">Check your solution here: <span id="check-judge">Link to judge</span>
+            </p>
+        </footer>
+    </div>
+    <script>
+        document.getElementById("button").addEventListener("click", function (event) {
+            event.preventDefault()
+        });
+        function addStudents() {
+            // TODO
+            let studentsInput = document.getElementById('input').value.split('\n');
+            let students = studentsInput.filter(el => el != '').map(line => {
+                let currentStudent = line.split(' ');
+                return {
+                    firstName: currentStudent[0],
+                    lastName: currentStudent[1],
+                    grade: parseFloat(currentStudent[2])
+                };
+
+
+            });
+
+            let result = '';
+            result += 'Students are: ';
+            result += students.map(s => `${s.firstName} ${s.lastName}`).join(', ');
+            result += '\n';
+            result += 'Average grade: ';
+            result += (students.map(s => s.grade).reduce((a, b) => a + b) / students.length).toFixed(2);
+            result.split()
+
+            document.getElementById('result').value = result;
+           // document.getElementById('result').value = JSON.stringify(students);
+        }
+    </script>
+</body>
+
+</html>
+
+/*
+Pantudy Stamatov 6
+Stavri Prokofiev 4.5
+Manol Petouhov 5
+
+*/

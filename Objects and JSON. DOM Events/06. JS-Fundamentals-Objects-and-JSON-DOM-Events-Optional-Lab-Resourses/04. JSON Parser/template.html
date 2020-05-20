@@ -1,0 +1,91 @@
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="./style/template.css">
+    <title>JSON Parser</title>
+</head>
+
+<body>
+    <div id="container">
+        <nav id="navigation">
+            <div id="navigation-text">
+                <p id="lecture-name">Objects, JSON and DOM Events</p>
+                <p id="problem-name">04. JSON Parser</p>
+            </div>
+           <img id="logo-img" src="./images/SoftUniFoundation_Logo_OneLine_White@2x.png" alt="logo"> 
+        </nav>
+        <main>
+            <div id="exercise">
+                <form>
+                    <label>Input</label>
+                    <input type="text" id="input">
+                    <label>Command</label>
+                    <input type="text" id="command">
+                    <div class="center">
+                        <input type="submit" id="button" onclick="extractInfo()" value="Extract Info">
+                    </div>
+                </form>
+                <label>Result</label>
+                <textarea readonly rows="10" cols="50" id="result"></textarea>
+            </div>
+          <!--  <img id="softUni-person-img" src="./images/cw_2_New_Logo.png" alt="softUni-person"> -->
+        </main>
+        <footer>
+            <p id="footer-text">Check your solution here: <span id="check-judge">Link to judge</span>
+            </p>
+        </footer>
+    </div>
+    <script>
+        document.getElementById("button").addEventListener("click", function (event) {
+            event.preventDefault()
+        });
+        function extractInfo() {   ////////   NOT WORKS
+            // TODO
+            let string = document.getElementById("input").value;
+            let info = JSON.parse(string);
+            let command = document.getElementById("command").value;
+            let commandParams = command.split(" ");
+            let commandType = commandParams[0];
+            let commandKey = commandParams[commandParams.length - 1];
+
+
+           let output = document.getElementById("result").value;
+           
+            if (commandType === "typeof") {
+                if (info[commandKey]) {
+                    //TODO: print value
+                
+                    output.value += `Type: ${info[commandType]}`;
+                } else {
+                    //  TODO:no such key
+                    output.value += 'No such item.'
+                }
+            }
+            else if (commandType === "value"){
+                if(info[commandKey]){
+                    //TODO:print value
+                  
+                    output.value += `Value: ${info[commandKey]}`;
+                }else{
+                   // TODO:no such key
+                   output.value += 'No such item.'
+                }
+            }else{
+                //TODO: Invalid command
+                output.value += "Invalid command";
+                
+            }
+        }
+    </script>
+</body>
+
+</html>
+
+
+<!--
+    "name":"Pedro","age":25
+
+value of name
+
+Value: Pedro
+-->
